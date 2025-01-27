@@ -2,12 +2,12 @@ import pygame
 import os
 import sys
 
-
 pygame.init()
 FPS = 50
 SIZE = WIGHT, HEIGHT = 500, 500
 screen = pygame.display.set_mode(SIZE)
 clock = pygame.time.Clock()
+
 
 def load_image(name, colorkey=None):
     fullname = os.path.join('data', name)
@@ -24,3 +24,46 @@ def load_image(name, colorkey=None):
     else:
         image = image.convert_alpha()
     return image
+
+
+def draw_text(surf, text, size, x, y):
+    pass
+
+
+def draw_hp_bar(surf, x, y, a):
+    pass
+
+
+class Player(pygame.sprite.Sprite):
+    def __init__(self):
+        pass
+
+    def update(self):
+        pass
+
+    def shoot(self):
+        pass
+
+
+class Boss(pygame.sprite.Sprite):
+    def __init__(self):
+        pass
+
+    def update(self):
+        pass
+
+
+class Enemy(pygame.sprite.Sprite):
+    def __init__(self):
+        pass
+
+    def update(self):
+        pass
+
+
+class bullet(pygame.sprite.Sprite):
+    def __init__(self):
+        pass
+
+    def update(self):
+        pass
