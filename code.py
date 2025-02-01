@@ -113,11 +113,21 @@ class Boss(pygame.sprite.Sprite):
 
 
 class Enemy(pygame.sprite.Sprite):
-    def __init__(self):
-        pass
+        def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.Surface((30, 40))
+        self.image = enemy_image
+        self.rect = self.image.get_rect()
+        self.rect.x = random.randrange(WIGHT - self.rect.width)
+        self.rect.y = random.ranrange(-100, -40)
+        self.speedy = random.randrange(1, 8)
 
     def update(self):
-        pass
+        self.rect.y += self.speedy
+        if self.rect.top > HEIGHT + 10:
+            self.rect.x = random.randrange(WIGHT - self.rect.width)
+            self.rect.y = random.ranrange(-100, -40)
+            self.speedy = random.randrange(1, 8)
 
 
 class bullet(pygame.sprite.Sprite):
