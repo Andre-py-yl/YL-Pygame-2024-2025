@@ -144,3 +144,98 @@ class Bullet(pygame.sprite.Sprite):
         self.rect.y += self.speedy
         if self.rect.bottom < 0:
             self.kill()
+
+
+player_image = load_image("ship.png", -1)
+enemy_image = load_image("egg.png", -1)
+bullet_image = load_image("bullet.png", -1)
+boss_image = load_image("UFO.png", -1)
+g_egg = load_image("g_egg.png", -1)
+player = Player()
+all_sprites.add(player)
+score = 0
+
+for i in range(8):
+    e = Enemy()
+    all_sprites.add(e)
+    enem.add(e)
+
+clock = pygame.time.Clock()
+running = True
+num_hits = 0
+boss_spawn_counter = 0
+while running:
+    clock.tick(FPS)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                player.shoot()
+
+    all_sprites.update()
+
+boom = pygame.sprite.spritecollide(player, enem, True, pygame.sprite.collide_circle)
+for hit in boom:
+    boom_sound.play()
+    player.hp -= 2
+    if player.hp <= 0:
+        running = False
+    m = Enemy()
+    all_sprites.add(m)
+    enem.add(m)
+
+boom2 = pygame.sprite.spritecollide(player, enem_2, True, pygame.sprite.collide_circle)
+for hit in boom2:
+    boom_sound.play()
+    player.hp -= 2
+    if player.hp <= 0:
+        running = False
+
+bulletsss = pygame.sprite.groupcollide(enem, bullets, True, True)
+for hit in bulletsss:
+    egg_sound.play()
+    score += 5
+    e = Enemy()
+    all_sprites.add(e)
+    enem.add(e)
+    boss_spawn_counter += 1
+
+if boss_spawn_counter == 5:
+    for elem in enem:
+        elem.kill()
+    b = Boss()
+    all_sprites.add(b)
+    boss_sprite.add(b)
+    boss_spawn_counter = 0
+
+bulle = pygame.sprite.groupcollide(enem_2, bullets, True, True)
+for i in bulle:
+    egg_sound.play()
+
+boss_check = pygame.sprite.groupcollide(boss_sprite, bullets, False, True)
+for hit in boss_check:
+    num_hits += 1
+if num_hits == 20:
+    for elem in boss_sprite:
+        elem.kill()
+    for i in range(8):
+        e = Enemy()
+        all_sprites.add(e)
+        enem.add(e)
+    num_hits = 0
+
+screen.fill((0, 0, 0))
+screen.blit(screen, screen_rect)
+all_sprites.draw(screen)
+draw_text(screen, str(score), 18, width / 2, 10)
+draw_text(screen, str(high_score), 18, width / 4, 10)
+draw_hp_bar(screen, 390, 10, player.hp)
+pygame.display.flip()
+if score > int(high_score):
+    high_score = score
+    print(str(high_score).strip(), file=q)
+else:
+    print(str(high_score).strip(), file=q)
+q.close()
+pygame.quit()
