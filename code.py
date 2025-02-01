@@ -113,7 +113,7 @@ class Boss(pygame.sprite.Sprite):
 
 
 class Enemy(pygame.sprite.Sprite):
-        def __init__(self):
+    def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.Surface((30, 40))
         self.image = enemy_image
@@ -131,7 +131,7 @@ class Enemy(pygame.sprite.Sprite):
 
 
 class Bullet(pygame.sprite.Sprite):
-        def __init__(self, x, y):
+    def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.Surface((16, 15))
         self.image = bullet_image
