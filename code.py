@@ -1,3 +1,4 @@
+import random
 import pygame
 import os
 import sys
@@ -30,7 +31,6 @@ q = open("High_Score.txt", mode="w")
 
 def load_image(name, colorkey=None):
     fullname = os.path.join('data', name)
-    # если файл не существует, то выходим
     if not os.path.isfile(fullname):
         print(f"Файл с изображением '{fullname}' не найден")
         sys.exit()
@@ -62,7 +62,7 @@ def draw_text(surf, text, size, x, y):
 def draw_hp_bar(surf, x, y, a):
     if a < 0:
         a = 0
-    bar_lenght = 100 
+    bar_lenght = 100
     bar_height = 10
     fill = (a / 10) * bar_lenght
     outline_rect = pygame.Rect(x, y, bar_lenght, bar_height)
@@ -113,7 +113,7 @@ class Boss(pygame.sprite.Sprite):
         self.speedy = 5
         self.speedx = 5
 
-    def update(self)
+    def update(self):
         if self.rect.x >= 50 and self.rect.y == 50:
             self.rect.x += self.speedx
         if self.rect.x == 300:
@@ -153,14 +153,14 @@ class Enemy(pygame.sprite.Sprite):
         self.image = pygame.Surface((30, 40))
         self.image = enemy_image
         self.rect = self.image.get_rect()
-        self.rect.x = random.randrange(WIGHT - self.rect.width)
+        self.rect.x = random.randrange(width - self.rect.width)
         self.rect.y = random.ranrange(-100, -40)
         self.speedy = random.randrange(1, 8)
 
     def update(self):
         self.rect.y += self.speedy
-        if self.rect.top > HEIGHT + 10:
-            self.rect.x = random.randrange(WIGHT - self.rect.width)
+        if self.rect.top > height + 10:
+            self.rect.x = random.randrange(width - self.rect.width)
             self.rect.y = random.ranrange(-100, -40)
             self.speedy = random.randrange(1, 8)
 
