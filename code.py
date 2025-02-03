@@ -82,7 +82,6 @@ class Player(pygame.sprite.Sprite):
         self.speed = 0
         self.hp = 10
 
-
     def update(self):
         self.speed = 0
         what = pygame.key.get_pressed()
@@ -95,7 +94,6 @@ class Player(pygame.sprite.Sprite):
             self.rect.x = width - 55
         if self.rect.x <= 0:
             self.rect.x = 5
-
 
     def shoot(self):
         bullet = Bullet(self.rect.centerx, self.rect.top)
