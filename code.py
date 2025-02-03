@@ -254,6 +254,7 @@ for hit in boss_check:
 if num_hits == 20:
     for elem in boss_sprite:
         elem.kill()
+        score += 300
     for i in range(8):
         e = Enemy()
         all_sprites.add(e)
