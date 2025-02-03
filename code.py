@@ -62,7 +62,7 @@ def draw_text(surf, text, size, x, y):
 def draw_hp_bar(surf, x, y, a):
     if a < 0:
         a = 0
-    bar_lenght = 100 +
+    bar_lenght = 100 
     bar_height = 10
     fill = (a / 10) * bar_lenght
     outline_rect = pygame.Rect(x, y, bar_lenght, bar_height)
@@ -83,25 +83,25 @@ class Player(pygame.sprite.Sprite):
         self.hp = 10
 
 
-def update(self):
-    self.speed = 0
-    what = pygame.key.get_pressed()
-    if what[pygame.K_LEFT]:
-        self.speed = -5
-    if what[pygame.K_RIGHT]:
-        self.speed = 5
-    self.rect.x += self.speed
-    if self.rect.x >= width - 55:
-        self.rect.x = width - 55
-    if self.rect.x <= 0:
-        self.rect.x = 5
+    def update(self):
+        self.speed = 0
+        what = pygame.key.get_pressed()
+        if what[pygame.K_LEFT]:
+            self.speed = -5
+        if what[pygame.K_RIGHT]:
+            self.speed = 5
+        self.rect.x += self.speed
+        if self.rect.x >= width - 55:
+            self.rect.x = width - 55
+        if self.rect.x <= 0:
+            self.rect.x = 5
 
 
-def shoot(self):
-    bullet = Bullet(self.rect.centerx, self.rect.top)
-    all_sprites.add(bullet)
-    bullets.add(bullet)
-    shoot_sound.play()
+    def shoot(self):
+        bullet = Bullet(self.rect.centerx, self.rect.top)
+        all_sprites.add(bullet)
+        bullets.add(bullet)
+        shoot_sound.play()
 
 
 class Boss(pygame.sprite.Sprite):
