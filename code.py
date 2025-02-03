@@ -106,10 +106,47 @@ def shoot(self):
 
 class Boss(pygame.sprite.Sprite):
     def __init__(self):
-        pass
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.Surface((100, 70))
+        self.image = boss_image
+        self.rect = self.image.get_rect()
+        self.rect.x = 50
+        self.rect.y = 50
+        self.speedy = 5
+        self.speedx = 5
+
+    def update(self)
+        if self.rect.x >= 50 and self.rect.y == 50:
+            self.rect.x += self.speedx
+        if self.rect.x == 300:
+            self.rect.y += self.speedy
+        if self.rect.y == 500:
+            self.rect.x -= self.speedx
+        if self.rect.x == 50:
+            self.rect.y -= self.speedy
+        global xx, yy, time
+        xx = self.rect.x
+        yy = self.rect.y
+        time += 1
+        if time == 10:
+            e = Boss_Eggs()
+            all_sprites.add(e)
+            enem_2.add(e)
+            time = 0
+
+
+class Boss_Eggs():
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.Surface((30, 40))
+        self.image = g_egg
+        self.rect = self.image.get_rect()
+        self.rect.x = xx + 50
+        self.rect.y = yy + 50
+        self.speedy = random.randrange(1, 8)
 
     def update(self):
-        pass
+        self.rect.y += self.speedy
 
 
 class Enemy(pygame.sprite.Sprite):
